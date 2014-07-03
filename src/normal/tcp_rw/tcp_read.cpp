@@ -21,33 +21,31 @@ main(int argc, char* argv[]){
 
     sockfd = socket(PF_INET, SOCK_STREAM, 0); 
     if(sockfd<0){
-        perror("The socket creation failed ");
-        exit(1);
+        errExit("The socket creation failed ");
     }   
 
     ret = bind(sockfd, (struct sockaddr*)&address, sizeof(address));
     if(ret<0){
-        perror("The bind process failed ");
-        exit(1);
+        errExit("The bind process failed ");
     }   
 
     ret = listen(sockfd, 5); 
     if(ret<0){
-        perror("The listen process failed ");
-        exit(1);
+        errExit("The listen process failed ");
     }   
 
     struct sockaddr_in client;
     socklen_t client_addrlength = sizeof(client);
     int connfd = accept(sockfd, (struct sockaddr*)&client, &client_addrlength);
     if (connfd < 0){ 
-        perror("The accept process failed ");
+        errMsg("The accept process failed ");
     }   
     else{
         memset(buffer, '\0', BUF_SIZE);
+        ret = net_read(connfd, buffer, BUF_SIZE-1);
         printf("got %d bytes of normal data '%s'\n", ret, buffer);
 
-        close(connfd);
+		close(connfd);
     }
 
     close(sockfd);

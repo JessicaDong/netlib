@@ -20,19 +20,18 @@ main(int argc, char* argv[]){
 
     sockfd = socket(PF_INET, SOCK_STREAM, 0); 
     if(sockfd<0){
-        perror("The socket creation failed ");
-        exit(1);
+        errExit("The socket creation failed ");
     }   
 
     ret=connect(sockfd, (struct sockaddr*)&server_address, sizeof(server_address));
     if(ret<0){
-        printf("connection failed\n");
+        errMsg("connection failed");
     }   
     else{
         printf("write normal data out\n");
         const char* normal_data = "Hello read~~~~~";
         net_write(sockfd, normal_data, strlen(normal_data));
-    }   
+   }   
 
     close(sockfd);
     return 0;
