@@ -18,7 +18,7 @@ main(int argc, char* argv[]){
     inet_pton(AF_INET, ip, &server_address.sin_addr);
     server_address.sin_port = htons(port);
 
-    sockfd = socket(PF_INET, SOCK_STREAM, 0); 
+    sockfd = socket(AF_INET, SOCK_STREAM, 0); 
     if(sockfd<0){
         errExit("The socket creation failed ");
     }   
