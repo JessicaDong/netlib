@@ -17,3 +17,6 @@ struct addrinfo {
 int getaddrinfo(const char *host, const char *service,
     const struct addrinfo *hints, struct addrinfo **result)
 */
+
+#define BACKLOG 20
+#define PORT 12345
