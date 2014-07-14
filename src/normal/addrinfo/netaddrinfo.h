@@ -1,7 +1,6 @@
 #include"../../../lib/netlib.h"
 #include"../../../lib/neterror.h"
 
-
 /*
 struct addrinfo {
     int     ai_flags;
