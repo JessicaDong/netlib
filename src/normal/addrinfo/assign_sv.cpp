@@ -10,6 +10,7 @@ main(int argc, char *argv[]){
     int sockfd,ret;
     socklen_t addrlen;
     /*Ignore SIGPIPE, prevent unnormal close*/
+    /* should use isgaction */
     if(signal(SIGPIPE,SIG_IGN==SIG_ERR))
         errExit("signal");
 
